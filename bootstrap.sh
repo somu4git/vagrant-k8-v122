@@ -60,5 +60,4 @@ cat >>/etc/hosts<<EOF
 172.16.16.102   kworker2.example.com    kworker2
 EOF
 
-echo "[TASK 11] Add Kubectl autocomplete"
-echo "source <(kubectl completion bash)" >> ~/.bashrc
+
