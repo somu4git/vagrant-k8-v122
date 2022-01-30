@@ -1,10 +1,15 @@
 #!/bin/bash
 
+
+MASTER_IP="192.168.212.100"
+NODENAME=$(hostname -s)
+POD_CIDR="192.168.0.0/16"
+
 echo "[TASK 1] Pull required containers"
 kubeadm config images pull >/dev/null 2>&1
 
 echo "[TASK 2] Initialize Kubernetes Cluster"
-kubeadm init --apiserver-advertise-address=172.16.16.100 --pod-network-cidr=192.168.0.0/16 >> /root/kubeinit.log 2>/dev/null
+kubeadm init --apiserver-advertise-address=$MASTER_IP --apiserver-cert-extra-sans=$MASTER_IP --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap >> /root/kubeinit.log 2>/dev/null
 
 
 echo "[TASK 2.1] Save config to home directory"
